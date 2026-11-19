@@ -1,8 +1,8 @@
-#My-SAP-webstore
+# My-SAP-webstore
 A web-based e-commerce application built with Next.js, React and TypeScript, integrated with an SAP ABAP RAP backend through OData V4 APIs.
 
 
-##Setup
+## Setup
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
