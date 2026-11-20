@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+   async rewrites() {
+    return [
+      {
+        source: "/testclient/:path*",
+        destination: `http://${process.env.SAP_LOCAL_HOST}/testclient/:path*`,
+      },
+    ];
+  },
   experimental: {
     agentFeedback: true,
   },
