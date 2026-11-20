@@ -35,7 +35,7 @@ const page =  () => {
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
           <h1>{product.ProductName}</h1>
           <Image
-          src={product.ProductImage}
+          src={`/Images/${product.ProductImage}.jpg`}
           width={500}
           height={500}
           alt={product.ProductName}

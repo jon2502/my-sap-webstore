@@ -32,7 +32,7 @@ const page = () => {
         <div key={product.ProductId}>
           <h1>{product.ProductName}</h1>
           <Image
-           src={product.ProductImage}
+           src={`/Images/${product.ProductImage}.jpg`}
           width={500}
           height={500}
           alt={product.ProductName}
