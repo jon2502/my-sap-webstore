@@ -15,8 +15,6 @@ export const GetProduct = async ({ id }: { id: string }) => {
     throw new Error("SAP_STOCK_URL is not configured");
   }
 
-  console.log(stockUrl)
-
   const url = new URL(stockUrl, window.location.origin);
   try {
       const response = await fetch(
@@ -33,15 +31,15 @@ export const GetProduct = async ({ id }: { id: string }) => {
       if (!response.ok) {
         throw new Error(`SAP error: ${response.status}`);
       }
+
       const responseData= await response.json();
       const data: Product = {
-          ProductId: responseData.ProductId,
-          ProductName: responseData.ProductName,
-          ProductDesctiption: responseData.ProductDesctiption,
-          Price: responseData.Price,
-          ProductImage: responseData.ProductImage,
+        ProductId: responseData.ProductId,
+        ProductName: responseData.ProductName,
+        ProductDesctiption: responseData.ProductDesctiption,
+        Price: responseData.Price,
+        ProductImage: responseData.ProductImage,
       }
-      console.log(data)
       return data
 
     } catch (error) {

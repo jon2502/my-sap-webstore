@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react'
 import {GetProducts} from "@/services/SAP/GetProducts"
+import { useRouter } from "next/navigation";
 import Image from 'next/image';
 
 
@@ -15,9 +16,8 @@ interface Product {
 
 const page = () => {
   const [products, setProducts] = useState<Product[]>([])
-  useEffect(() => {
-  console.log("EFFECT TEST");
-}, []);
+  const router = useRouter()
+
     useEffect(() =>{
     const fetchData = async () => {
       const data = await GetProducts();
@@ -29,7 +29,7 @@ const page = () => {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       {products.map((product:Product)=>(
-        <div key={product.ProductId}>
+        <div key={product.ProductId} onClick={() =>  router.push(`/${product.ProductId}`)}>
           <h1>{product.ProductName}</h1>
           <Image
            src={`/Images/${product.ProductImage}.jpg`}
@@ -38,6 +38,12 @@ const page = () => {
           alt={product.ProductName}
           />
           <p>{product.Price} KR.</p>
+          <button onClick={(e) => {
+            e.stopPropagation()
+            console.log("test")
+            }}>
+            <p>Add to Cart</p>
+          </button>
         </div>
       ))}
     </div>

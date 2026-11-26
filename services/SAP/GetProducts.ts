@@ -7,11 +7,6 @@ export interface Product {
   ProductImage: string;
 }
 
-interface ApiResponse {
-  value: Product[];
-}
-
-
 export const GetProducts = async () => {
 
   const stockUrl = process.env.NEXT_PUBLIC_SAP_GET_PPRODUCT;
@@ -20,9 +15,8 @@ export const GetProducts = async () => {
     throw new Error("SAP_STOCK_URL is not configured");
   }
 
-  console.log(stockUrl)
-
   const url = new URL(stockUrl, window.location.origin);
+
   try {
       const response = await fetch(
         url,
@@ -38,7 +32,7 @@ export const GetProducts = async () => {
       if (!response.ok) {
         throw new Error(`SAP error: ${response.status}`);
       }
-      const responseData : ApiResponse = await response.json();
+      const responseData : { value: Product[];} = await response.json();
       const data: Product[] = responseData.value.map((item) => ({
         ProductId: item.ProductId,
         ProductName: item.ProductName,
